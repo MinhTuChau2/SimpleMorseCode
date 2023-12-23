@@ -1,0 +1,276 @@
+// Define the pin
+const int ledPin = 13;
+
+void setup() {
+  // Set the pin
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Get input
+  String inputText = getUserInput();
+  
+  // Output Morse code for each character
+  outputMorseCode(inputText);
+}
+
+String getUserInput() {
+  Serial.begin(9600);  
+  Serial.println("\n Enter text for Morse code: ");
+  
+  while (!Serial.available()) {
+    // Wait for user input
+  }
+
+  String inputText = Serial.readString();
+  inputText.trim();  // Remove leading and trailing whitespace
+  return inputText;
+}
+
+void outputMorseCode(String text) {
+  for (int i = 0; i < text.length(); i++) {
+    char currentChar = text.charAt(i);
+    
+    switch (currentChar) {
+      case 'A':
+       Serial.print("A");
+        blinkMorse(".-");
+        break;
+      case 'a':
+      Serial.print("a");
+        blinkMorse(".-");
+        break;
+      case 'B':
+      Serial.print("B");
+        blinkMorse("-...");
+        break;
+      case 'b':
+      Serial.print("b");
+        blinkMorse("-...");
+        break;
+      case 'C':
+      Serial.print("C");
+        blinkMorse("-.-.");
+        break;
+      case 'c':
+      Serial.print("c");
+        blinkMorse("-.-.");
+        break;
+      case 'D':
+      Serial.println("D");
+      blinkMorse("-..");
+        break;
+      case 'd':
+      Serial.print("d");
+        blinkMorse("-..");
+        break;
+      case 'E':
+      Serial.print("E");
+        blinkMorse(".");
+        break;
+      case 'e':
+      Serial.print("e");
+        blinkMorse(".");
+        break;
+      case 'F':
+      Serial.print("F");
+        blinkMorse("..-.");
+        break;
+      case 'f':
+      Serial.print("f");
+        blinkMorse("..-.");
+        break;
+      case 'G':
+      Serial.print("G");
+        blinkMorse("--.");
+        break;
+      case 'g':
+      Serial.print("g");
+        blinkMorse("--.");
+        break;
+      case 'H':
+      Serial.print("H");
+        blinkMorse("....");
+        break;
+      case 'h':
+      Serial.print("h");
+        blinkMorse("....");
+        break;
+      case 'I':
+      Serial.print("I");
+        blinkMorse("..");
+        break;
+      case 'i':
+      Serial.print("i");
+        blinkMorse("..");
+        break;
+      case 'J':
+      Serial.print("J");
+        blinkMorse(".---");
+        break;
+      case 'j':
+      Serial.print("j");
+        blinkMorse(".---");
+        break;
+      case 'K':
+      Serial.print("K");
+        blinkMorse("-.-");
+        break;
+      case 'k':
+      Serial.print("k");
+        blinkMorse("-.-");
+        break;
+      case 'L':
+      Serial.print("L");
+        blinkMorse(".-..");
+        break;
+      case 'l':
+      Serial.print("l");
+        blinkMorse(".-..");
+        break;
+      case 'M':
+      Serial.print("M");
+        blinkMorse("--");
+        break;
+      case 'm':
+      Serial.print("m");
+        blinkMorse("--");
+        break;
+      case 'N':
+      Serial.print("N");
+        blinkMorse("-.");
+        break;
+      case 'n':
+      Serial.print("n");
+        blinkMorse("-.");
+        break;
+      case 'O':
+      Serial.print("O");
+        blinkMorse("---");
+        break;
+      case 'o':
+      Serial.print("o");
+        blinkMorse("---");
+        break;
+      case 'P':
+      Serial.print("P");
+        blinkMorse(".--.");
+        break;
+      case 'p':
+      Serial.print("p");
+        blinkMorse(".--.");
+        break;
+      case 'Q':
+      Serial.print("Q");
+        blinkMorse("--.-");
+        break;
+      case 'q':
+      Serial.print("q");
+        blinkMorse("--.-");
+        break;
+      case 'R':
+      Serial.print("R");
+        blinkMorse(".-.");
+        break;
+      case 'r':
+      Serial.print("r");
+        blinkMorse(".-.");
+        break;
+      case 'S':
+      Serial.print("S");
+        blinkMorse("...");
+        break;
+      case 's':
+      Serial.print("s");
+        blinkMorse("...");
+        break;
+      case 'T':
+      Serial.print("T");
+        blinkMorse("-");
+        break;
+      case 't':
+      Serial.print("t");
+        blinkMorse("-");
+        break;
+      case 'U':
+      Serial.print("U");
+        blinkMorse("..-");
+        break;
+      case 'u':
+      Serial.print("u");
+        blinkMorse("..-");
+        break;
+      case 'V':
+      Serial.print("V");
+        blinkMorse("...-");
+        break;
+      case 'v':
+      Serial.print("v");
+        blinkMorse("...-");
+        break;
+      case 'W':
+      Serial.print("W");
+        blinkMorse(".--");
+        break;
+      case 'w':
+      Serial.print("w");
+        blinkMorse(".--");
+        break;
+      case 'X':
+      Serial.print("X");
+        blinkMorse("-..-");
+        break;
+      case 'x':
+      Serial.print("x");
+        blinkMorse("-..-");
+        break;
+      case 'Y':
+      Serial.print("Y");
+        blinkMorse("-.--");
+        break;
+      case 'y':
+      Serial.print("y");
+        blinkMorse("-.--");
+        break;
+      case 'Z':
+      Serial.print("Z");
+      blinkMorse("--..");
+        break;
+      case 'z':
+      Serial.print("z");
+        blinkMorse("--..");
+        break;
+      case ' ':
+      Serial.print(" ");
+        delay(500);
+        break;
+      default:
+        // Nothing
+        break;
+    }
+    
+    // Space between characters
+    delay(300);
+  }
+}
+
+void blinkMorse(String morseCode) {
+  for (int i = 0; i < morseCode.length(); i++) {
+    char dotDash = morseCode.charAt(i);
+    
+    if (dotDash == '.') {
+      // Dot
+      digitalWrite(ledPin, HIGH);
+      delay(300);
+      digitalWrite(ledPin, LOW);
+    } else if (dotDash == '-') {
+      // Dash
+      digitalWrite(ledPin, HIGH);
+      delay(900);
+      digitalWrite(ledPin, LOW);
+    }
+    
+    // Space between dots and dashes
+    delay(200);
+  }
+}
